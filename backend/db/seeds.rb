@@ -6,7 +6,10 @@ Board.destroy_all
     User.create(username: Faker::Name.name, password: "password1")
 end
 
-Item.create(name: Faker::House.furniture, price: Faker::Commerce.price)
+20.times do
+    Item.create(name: Faker::House.furniture, price: Faker::Commerce.price)
+    Item.create(name: Faker::Appliance.equipment, price: Faker::Commerce.price)
+end
 
 item_ids = Item.all.map{|item| item.id}
 user_ids = User.all.map{|user| user.id}
