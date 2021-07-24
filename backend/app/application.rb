@@ -7,6 +7,7 @@ class Application
     if req.path.match(/test/) 
       return [200, { 'Content-Type' => 'application/json' }, 
       [ {:message => "test response!"}.to_json ]]
+
     # GET user request
     elsif req.path.match(/users/) && req.get?
       users = User.all.map do |user| {username: user.username}
@@ -25,6 +26,7 @@ class Application
         return [200, { 'Content-Type' => 'application/json' }, 
         [ {:data => {:message => "Sign-up Completed", :username => user}}.to_json]]
       end
+
     # GET item request
     elsif req.path.match(/items/) && req.get?
       items = Item.all.map do |item| {
@@ -40,9 +42,10 @@ class Application
     # POST item request
     elsif req.path.match(/items/) && req.post?
       data = JSON.parse(req.body.read)
-      item = User.create(data)
-        return [200, { 'Content-Type' => 'application/json' }, 
-        [ {:data => {:items => item}}.to_json]]
+      new_item = Item.create(title: data["title"], description: data["description"],
+        image: data["image"], price: data["price"])
+        return [200, { 'Content-Type' => 'application/json' }, [ new_item.to_json]]
+
     # GET board request
     elsif req.path.match(/boards/) && req.get?
       boards = Board.all.map do |board| {
@@ -57,9 +60,8 @@ class Application
     # POST board request
     elsif req.path.match(/boards/) && req.post?
       data = JSON.parse(req.body.read)
-      board = User.create(data)
-        return [200, { 'Content-Type' => 'application/json' }, 
-        [ {:data => {:boards => boards}}.to_json]]
+      board = Board.create(title: data["title"], description: data["description"])
+        return [200, { 'Content-Type' => 'application/json' }, [ board.to_json]]
 
     else
       return [400, {'Content-Type' => 'application/json'}, [ {:error => "Path Not Found"}.to_json]]
