@@ -33,8 +33,7 @@ class Application
         title: item.title, 
         description: item.description, 
         image: item.image_url,
-        price: item.price,
-        board: item.board_id
+        price: item.price
       }
       end
       return [200, { 'Content-Type' => 'application/json' }, 
@@ -50,9 +49,7 @@ class Application
     elsif req.path.match(/boards/) && req.get?
       boards = Board.all.map do |board| {
         title: board.title, 
-        description: board.description, 
-        user_id: board.user_id,
-        item_id: board.item_id,
+        description: board.description
       }
       end
       return [200, { 'Content-Type' => 'application/json' }, 
@@ -60,8 +57,8 @@ class Application
     # POST board request
     elsif req.path.match(/boards/) && req.post?
       data = JSON.parse(req.body.read)
-      board = Board.create(title: data["title"], description: data["description"])
-        return [200, { 'Content-Type' => 'application/json' }, [ board.to_json]]
+      new_board = Board.create(title: data["title"], description: data["description"])
+        return [200, { 'Content-Type' => 'application/json' }, [ new_board.to_json]]
 
     else
       return [400, {'Content-Type' => 'application/json'}, [ {:error => "Path Not Found"}.to_json]]
