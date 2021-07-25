@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_052427) do
     t.string "title"
     t.text "description"
     t.text "image_url"
-    t.integer "price"
     t.integer "user_id"
     t.integer "board_id"
     t.datetime "created_at", null: false
