@@ -26,21 +26,26 @@ class Application
         [ {:message => "Sign-up Completed"}, user.to_json]]
       end
 
-    # GET item request
+    # GET/POST/PATCH/DELETE item request
     elsif req.path.match(/items/) && req.get?
       items = Item.all.map do |item| {
         title: item.title, 
         description: item.description, 
         image: item.image_url,
-        price: item.price,
         board: item.board_id
       }
       end
       return [200, { 'Content-Type' => 'application/json' }, [items.to_json]]
-    # POST item request
+      #post request not working.. have to fix it
     elsif req.path.match(/items/) && req.post?
       data = JSON.parse(req.body.read)
       item = Item.create(title: data["title"], description: data["description"])
+        return [200, { 'Content-Type' => 'application/json' }, [item.to_json]]
+    elsif req.path.match(/items/) && req.patch?
+      item = Item.update(title: data["title"], description: data["description"])
+        return [200, { 'Content-Type' => 'application/json' }, [item.to_json]]
+    elsif req.path.match(/items/) && req.delete?
+      item = Item.delete
         return [200, { 'Content-Type' => 'application/json' }, [item.to_json]]
 
     # GET board request
