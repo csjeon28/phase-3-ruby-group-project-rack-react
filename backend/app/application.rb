@@ -24,7 +24,7 @@ class Application
     # GET/POST/PATCH/DELETE item request
     elsif req.path.match(/wishes/)
       if req.env["REQUEST_METHOD"] == "GET"
-          if req.path.split("/items").length == 0
+          if req.path.split("/wishes").length == 0
           wish = Wish.all
           return [200, {'Content-Type' => 'application/json'}, [wish.to_json]]
           end
@@ -35,13 +35,13 @@ class Application
         return [200, {'Content-Type' => 'application/json'}, [wish.to_json]]
       end
       if req.env["REQUEST_METHOD"] == "DELETE"
-        wish = Wish.delete
+        wish = Wish.all.last.delete
         return [200, {'Content-Type' => 'application/json'}, [wish.to_json]]
       end
-      if req.env["REQUEST_METHOD"] == "PATCH"
-        wish = Wish.update
-        return [200, {'Content-Type' => 'application/json'}, [wish.to_json]]
-      end
+      # if req.env["REQUEST_METHOD"] == "PATCH"
+      #   wish = Wish.update
+      #   return [200, {'Content-Type' => 'application/json'}, [wish.to_json]]
+      # end
 
     # GET/POST/PATCH/DELETE board request
     elsif req.path.match(/boards/)
