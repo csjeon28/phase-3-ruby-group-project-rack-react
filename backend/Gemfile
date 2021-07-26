@@ -4,7 +4,7 @@ gem 'pry'
 gem 'rack'
 gem 'rack-test'
 gem 'rspec'
-gem 'rack-cors'
+gem 'rack-cors', require: "rack/cors"
 gem 'shotgun'
 gem "require_all"
 gem "activerecord", "~> 5.2"
