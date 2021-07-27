@@ -94,7 +94,7 @@ class Application
     elsif req.path.match(/users/)
       name = req.params["q"]
       user = User.find_by(:name => name)
-      return [200, { "Content-Type" => "application/json" }, [{:user => user, :userWishes => user.wishes}.to_json]]
+      return [200, { "Content-Type" => "application/json" }, [{:user => user, :userWishes => user.wishes, :userBoards => user.boards}.to_json]]
 
     elsif req.path.match(/wishes/) && req.get?
       wishes = Wish.all.map do |wish| {
