@@ -1,9 +1,9 @@
 class CreateBoards < ActiveRecord::Migration[5.2]
   def change
     create_table :boards do |t|
-      t.string :title
-      t.text :description
-      t.references :wish, foreign_key: true
+      t.string :name
+      t.integer :wish_id
+      # t.references :wish, foreign_key: true
       
       t.timestamps
     end

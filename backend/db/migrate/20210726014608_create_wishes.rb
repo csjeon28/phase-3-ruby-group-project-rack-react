@@ -3,7 +3,9 @@ class CreateWishes < ActiveRecord::Migration[5.2]
     create_table :wishes do |t|
       t.string :title
       t.text :description
-      t.references :board, foreign_key: true
+      # t.references :board, foreign_key: true
+      t.integer :user_id
+      t.integer :board_id
 
       t.timestamps
     end

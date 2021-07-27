@@ -1,4 +1,4 @@
 class Board < ActiveRecord::Base
-    has_many :items
+    has_many :wishes
     belongs_to :user
 end
