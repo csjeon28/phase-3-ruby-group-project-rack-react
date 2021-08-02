@@ -8,16 +8,18 @@ User.create(username: Faker::Name.name)
 
 puts "Seeding users..."
 
-Wish.create(id: 1, title: "Accent Chairs", description: "For the living room", user_id: rand(1..20), board_id: rand(1..5))
-Wish.create(id: 2, title: "Lamps", description: "For the bedroom", user_id: rand(1..20), board_id: rand(1..5))
-Wish.create(id: 3, title: Faker::Coffee.blend_name, description: "Coffee blends I like", user_id: rand(1..20), board_id: rand(1..5))
+Wish.create(id: 1, title: "Accent Chairs", description: "For the living room", user_id: 1, board_id: 2)
+Wish.create(id: 2, title: "Lamps", description: "For the bedroom", user_id: 2, board_id: 4)
+Wish.create(id: 3, title: Faker::Coffee.blend_name, description: "Coffee blends I like", user_id: 3, board_id: 5)
 
 
 puts "Seeding wishes..."
 
-Board.create(name: "Interior Design", wish_id: rand(1..10))
-Board.create(name: "Must-Have List", wish_id: rand(1..10))
-Board.create(name: "Drinks", wish_id: rand(1..10))
+Board.create(name: "Interior Design", wish_id: 1, user_id: 1)
+Board.create(name: "Must-Have List", wish_id: 2, user_id: 2)
+Board.create(name: "Drinks", wish_id: 3, user_id: 2)
+Board.create(name: "Tech Toys", wish_id: 2, user_id: 3)
+Board.create(name: "Sports", wish_id: 1, user_id: 3)
 
 puts "Seeding boards..."
 
