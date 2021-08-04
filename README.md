@@ -56,38 +56,33 @@ fetch("http://localhost:9292/test")
 
 ### Planning user stories
 Create User       =>     post "/users"
-Edit User         =>     update "/users/:id"
 
 See all boards    =>     get "/boards"
 Add boards        =>     post "/boards"
-Edit boards       =>     update "/boards/:id"
 Delete boards  =>     
 
-See all items     =>     get "/items"
-Add items         =>     post "/items"
-Edit items        =>     update "/items/:id"
-Delete items  =>     
+See all wishes     =>     get "/wishes"
+Add wishes         =>     post "/wishes"  
 
 ### User Model
    -users can sign up
-   -users can login with username and password
    -has_many :boards
    -has_many :items, through :boards
 
 ### Board Model
    -users can create boards
    -belongs_to :user
-   -has_many :items
+   -has_many :wishes
 
-### Item Model
-   -create all items in seeds file
-   -users can view all items
-   -users can add/edit/delete items
+### Wish Model
+   -create all wishes in seeds file
+   -users can add wishes
    -belongs_to :board
-   -belongs_to :item
+   -belongs_to :user
 
 ### Set up database
-:user ---------< :board >---------- :item
-  :username        :user_id           :name
-  :password        :item_id           :price
-  :timestamps      :timestamps   
+:user ---------< :board >---------- :wish
+  :username        :name              :title
+                   :user_id           :description
+                                      :board_id
+  :timestamps      :timestamps        :user_id
