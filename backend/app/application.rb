@@ -11,6 +11,7 @@ class Application
 #<---------------USERS GET/POST REQUEST--------------->
     elsif req.path.match(/users/) && req.post?
       data = JSON.parse(req.body.read)
+      # binding.pry
       userExists = User.find_by(username: data["username"])
       if userExists
         return [200, { 'Content-Type' => 'application/json' }, 
@@ -22,6 +23,7 @@ class Application
       end
     elsif req.path.match(/users/) 
       username = req.params['q']
+      # binding.pry
       user = User.find_by(:username => username)
       return [200, { "Content-Type" => "application/json" }, [{:user => user, :userBoards => user.boards}.to_json]]
 #<----------------BOARDS GET REQUEST----------------->
