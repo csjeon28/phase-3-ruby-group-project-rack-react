@@ -65,31 +65,36 @@ See all wishes     =>     get "/wishes"
 Add wishes         =>     post "/wishes"  
 
 ### User Model
-   -users can sign up
+   -users can sign in and access boards
    -has_many :boards
-   -has_many :items, through :boards
+   -has_many :wishes
+
+   -User has many boards
+   -User has many wishes
+
 
 ### Board Model
-   -users can create boards
+   -users can create and add boards
    -belongs_to :user
    -has_many :wishes
 
+   -Board belongs to user
+   -Board has many wishes
+
+
 ### Wish Model
-   -create all wishes in seeds file
-   -users can add wishes
+   -users can add wishes and drag & drop to board
    -belongs_to :board
    -belongs_to :user
 
+   -Wish belongs to user
+   -Wish belongs to board
+
 ### Set up database
-:user ---------< :board >---------- :wish
-<<<<<<< HEAD
-  :username        :name              :title
-  :timestamps      :user_id           :description
-                   :timestamps        :board_id
-                                      :user_id
-                                      :timestamps
-=======
-  :username        :user_id           :name
-                   :wish_id           
-  :timestamps      :timestamps   
->>>>>>> 3299d59c117e9573c5f18715aa29ff3f46a1cbc3
+
+:user ----------- :wish ----------- :board
+  :username        :title            :name  
+  :timestamps      :description      :user_id 
+                   :board_id         :timestamps
+                   :user_id
+                   :timestamps
