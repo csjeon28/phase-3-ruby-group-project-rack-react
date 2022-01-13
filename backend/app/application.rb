@@ -11,7 +11,6 @@ class Application
 #<---------------USERS GET/POST REQUEST--------------->
     elsif req.path.match(/users/) && req.post?
       data = JSON.parse(req.body.read)
-      # binding.pry
       userExists = User.find_by(username: data["username"])
       if userExists
         return [200, { 'Content-Type' => 'application/json' }, 
@@ -23,7 +22,6 @@ class Application
       end
     elsif req.path.match(/users/) 
       username = req.params['q']
-      # binding.pry
       user = User.find_by(:username => username)
       return [200, { "Content-Type" => "application/json" }, [{:user => user, :userBoards => user.boards}.to_json]]
 #<----------------BOARDS GET REQUEST----------------->
@@ -35,12 +33,15 @@ class Application
     elsif req.path.match(/boards/) && req.post?
       data = JSON.parse(req.body.read)
       username = User.find_by(username: data["username"])
+      # binding.pry
+      # instead of using what I have, utilize ActiveRecord and just create directly username.boards
+      # username.boards.create(name: data["name"])
+      # username.save
       board = Board.create(name: data["name"], user_id: username.id)
       return [200, { 'Content-Type' => 'application/json' }, [ {:board => board}.to_json]]
 #<---------------BOARDS DELETE REQUEST---------------->
     elsif req.delete?
       id = req.path.split("/boards/").last
-      # binding.pry
       board = Board.find(id).delete
         return [200, { 'Content-Type' => 'application/json' }, [{:message => "Board deleted!", :board => board}.to_json ]]
 
