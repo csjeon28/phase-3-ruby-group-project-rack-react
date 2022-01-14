@@ -20,49 +20,49 @@ new repository in a separate folder with a React app for your frontend using
 
 ## Planning
 
-Create User       =>     post "/users"
+Create User --------=>-------- post "/users"
 
-See all boards    =>     get "/boards"
-Add boards        =>     post "/boards"
-Delete boards  =>     
+See all boards -----=>-------- get "/boards"
 
-See all wishes     =>     get "/wishes"
-Add wishes         =>     post "/wishes"  
+Add boards ---------=>-------- post "/boards"    
+
+See all wishes -----=>-------- get "/wishes"
+
+Add wishes ---------=>-------- post "/wishes"  
 
 ### User Model
-   -users can sign in and access boards
-   -has_many :boards
-   -has_many :wishes
+-users can sign in and access boards<br/>
+-has_many :boards<br/>
+-has_many :wishes<br/>
 
-   -User has many boards
-   -User has many wishes
-
+-User has many boards<br/>
+-User has many wishes
 
 ### Board Model
-   -users can create and add boards
-   -belongs_to :user
-   -has_many :wishes
+-users can create and add boards<br/>
+-belongs_to :user<br/>
+-has_many :wishes<br/>
 
-   -Board belongs to user
-   -Board has many wishes
+-Board belongs to user<br/>
+-Board has many wishes
 
 
 ### Wish Model
-   -users can add wishes and drag & drop to board
-   -belongs_to :board
-   -belongs_to :user
+-users can add wishes and drag & drop to board<br/>
+-belongs_to :board<br/>
+-belongs_to :user<br/>
 
-   -Wish belongs to user
-   -Wish belongs to board
+-Wish belongs to user<br/>
+-Wish belongs to board<br/>
 
 ### Set up database
 
-:user ----------- :wish ----------- :board
-  :username        :title            :name  
-  :timestamps      :description      :user_id 
-                   :board_id         :timestamps
-                   :user_id
-                   :timestamps
+:user ------------ :wish ------------ :board<br/>
+:username -------- :title ----------- :name<br/>
+:timestamps ------ :description ----- :user_id<br/>
+------------------ :board_id -------- :timestamps<br/>
+------------------ :user_id ---------------------<br/>
+------------------ :timestamps ------------------<br/>
 
 ### Project Screen Recording:
 <a href="https://www.dropbox.com/s/9ushiwo2zg4a7p6/Phase%203%20Project%20Screen%20Recording.mov?dl=0" target="_blank">Project Demo</a>
